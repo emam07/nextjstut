@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Navigation } from "../components/navigation";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +20,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <header className="bg-zinc-500 text-black p-4 text-2xl text-center"> Welcome to the Next.js course
+          <Navigation/>
+        </header>
         {children}
+
+        <footer className="bg-slate-700 text-white p-8 text-center">Code evolution</footer>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
